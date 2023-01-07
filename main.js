@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	const list = document.querySelector(".list-container ul");
 
 	//Tasks Array:
-	const tasks = ["clean room", "clean soul"];
+	let tasks = ["clean room", "clean soul"];
 
 	//Capture add button click and input value
 	form.onsubmit = function (e) {
@@ -33,6 +33,12 @@ window.addEventListener("DOMContentLoaded", function () {
 		deleteButton.classList.add("delete");
 		taskElem.appendChild(taskText);
 		taskElem.appendChild(deleteButton);
+		deleteButton.addEventListener("click", function (e) {
+			this.parentElement.remove();
+			tasks = tasks.filter(
+				(task) => task !== this.parentElement.textContent.slice(0, -6)
+			);
+		});
 		return taskElem;
 	}
 
