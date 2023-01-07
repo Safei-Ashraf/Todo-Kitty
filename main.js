@@ -1,37 +1,46 @@
-//Capture input
-const input = document.querySelector(".form-input");
-const form = document.querySelector("form");
+window.addEventListener("DOMContentLoaded", function () {
+	//Capture input
+	const input = document.querySelector(".form-input");
+	const form = document.querySelector("form");
 
-//Capture add button
-const addButton = document.querySelector(".form-submit");
-const list = document.querySelector(".list-container ul");
+	//Capture add button
+	const addButton = document.querySelector(".form-submit");
 
-//Tasks Array:
-const tasks = ["clean room", "clean soul"];
+	const list = document.querySelector(".list-container ul");
 
-//Capture add button click and input value
-form.onsubmit = function (e) {
-	e.preventDefault();
-};
-addButton.addEventListener("click", function (e) {
-	if (input.value.length > 0) {
-		console.log(input.value);
+	//Tasks Array:
+	const tasks = ["clean room", "clean soul"];
+
+	//Capture add button click and input value
+	form.onsubmit = function (e) {
+		e.preventDefault();
+	};
+	addButton.addEventListener("click", function () {
+		if (input.value.length > 0) {
+			tasks.push(input.value);
+			input.value = "";
+			renderTasks(tasks);
+		}
+	});
+
+	//Render tasks:
+	function createTask(text) {
+		let taskElem = document.createElement("li");
+		let taskText = document.createElement("p");
+		taskText.textContent = text;
+		let deleteButton = document.createElement("button");
+		deleteButton.textContent = "Delete";
+		deleteButton.classList.add("delete");
+		taskElem.appendChild(taskText);
+		taskElem.appendChild(deleteButton);
+		return taskElem;
+	}
+
+	function renderTasks(tasks) {
+		list.innerHTML = "";
+		for (let i = 0; i < tasks.length; i++) {
+			list.appendChild(createTask(tasks[i]));
+		}
+		console.log(tasks);
 	}
 });
-
-//render tasks:
-
-function createTask(text) {
-	let taskElem = document.createElement("li");
-	let taskText = document.createElement("p");
-	taskText.textContent = text;
-	let deleteButton = document.createElement("button");
-	deleteButton.textContent = "Delete";
-	deleteButton.classList.add("delete");
-	taskElem.appendChild(taskText);
-	taskElem.appendChild(deleteButton);
-	return taskElem;
-}
-
-list.appendChild(createTask("dirty"));
-console.log(list);
