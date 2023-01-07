@@ -32,6 +32,10 @@ main {
 	border: 2px solid transparent;
 	margin-top: 1%;
 	margin-right: 4px;
+	background-color: grey;
+	color: white;
+	font-weight: 900px;
+	font-size: 24px;
 }
 .form-submit {
 	height: 60px;
