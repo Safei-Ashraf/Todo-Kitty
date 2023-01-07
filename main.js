@@ -9,17 +9,24 @@ window.addEventListener("DOMContentLoaded", function () {
 	const list = document.querySelector(".list-container ul");
 
 	//Tasks Array:
-	let tasks = ["clean room", "clean soul"];
+	let tasks = [];
 
 	//Capture add button click and input value
 	form.onsubmit = function (e) {
 		e.preventDefault();
 	};
+
+	//Check Local Storage:
+	if (localStorage.getItem("tasks")) {
+		renderTasks(JSON.parse(localStorage.getItem("tasks")));
+	}
+
 	addButton.addEventListener("click", function () {
 		if (input.value.length > 0) {
 			tasks.push(input.value);
 			input.value = "";
 			renderTasks(tasks);
+			saveTasks(tasks);
 		}
 	});
 
@@ -35,9 +42,10 @@ window.addEventListener("DOMContentLoaded", function () {
 		taskElem.appendChild(deleteButton);
 		deleteButton.addEventListener("click", function (e) {
 			this.parentElement.remove();
-			tasks = tasks.filter(
-				(task) => task !== this.parentElement.textContent.slice(0, -6)
-			);
+			tasks = tasks.filter((task) => {
+				return task !== this.parentElement.textContent.slice(0, -6);
+			});
+			saveTasks(tasks);
 		});
 		return taskElem;
 	}
@@ -48,5 +56,9 @@ window.addEventListener("DOMContentLoaded", function () {
 			list.appendChild(createTask(tasks[i]));
 		}
 		console.log(tasks);
+	}
+
+	function saveTasks(tasks) {
+		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}
 });
