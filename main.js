@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 	function renderTasks(tasks) {
 		list.innerHTML = "";
-		for (let i = 0; i < tasks.length; i++) {
+		for (let i = tasks.length - 1; i >= 0; i--) {
 			list.appendChild(createTask(tasks[i]));
 		}
 	}
