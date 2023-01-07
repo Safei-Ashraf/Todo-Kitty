@@ -2,6 +2,8 @@ window.addEventListener("DOMContentLoaded", function () {
 	//Capture input
 	const input = document.querySelector(".form-input");
 	const form = document.querySelector("form");
+	//get all cats
+	let cats = document.querySelectorAll(".cat-img-container");
 
 	//Capture add button
 	const addButton = document.querySelector(".form-submit");
@@ -19,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	//Check Local Storage:
 	if (localStorage.getItem("tasks")) {
 		let oldTasks = JSON.parse(localStorage.getItem("tasks"));
-		renderTasks(oldTasks);
+		oldTasks.length > 0 && renderTasks(oldTasks);
 		tasks = tasks.concat(oldTasks);
 	}
 
@@ -42,13 +44,7 @@ window.addEventListener("DOMContentLoaded", function () {
 		deleteButton.classList.add("delete");
 		taskElem.appendChild(taskText);
 		taskElem.appendChild(deleteButton);
-		deleteButton.addEventListener("click", function (e) {
-			this.parentElement.remove();
-			tasks = tasks.filter((task) => {
-				return task !== this.parentElement.textContent.slice(0, -6);
-			});
-			saveTasks(tasks);
-		});
+		deleteButton.addEventListener("click", deleteTask);
 		return taskElem;
 	}
 
@@ -62,4 +58,40 @@ window.addEventListener("DOMContentLoaded", function () {
 	function saveTasks(tasks) {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}
+
+	function deleteTask() {
+		this.parentElement.remove();
+		tasks = tasks.filter((task) => {
+			return task !== this.parentElement.textContent.slice(0, -6);
+		});
+		setTimeout(function () {
+			if (tasks.length == 0) {
+				list.innerHTML = `	<p>Items will display here...</p>
+				<div class="placeholder-cat">
+					<img
+						src="./cats/cat-sticker-line-sticker.gif"
+						alt="cat=sticker"
+					/>
+				</div>`;
+			}
+		}, 100);
+		revealCat();
+		saveTasks(tasks);
+	}
+
+	/*Cats' logic */
+	let catsCounter = 0;
+	function revealCat() {
+		cats[shuffledArray[catsCounter]].classList.remove("none");
+		catsCounter++;
+	}
+
+	//Helper:
+	// Returns a random number between min (inclusive) and max (exclusive) => DroidScript.org
+	var shuffledArray = [];
+	while (shuffledArray.length < cats.length) {
+		var r = Math.floor(Math.random() * cats.length) + 1;
+		if (shuffledArray.indexOf(r) === -1) shuffledArray.push(r);
+	}
+	console.log(shuffledArray);
 });
