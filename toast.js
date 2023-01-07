@@ -2,10 +2,12 @@ const quotes = [
 	"Mashallah 👏",
 	"One down 😉",
 	"Good job ❤️",
+	"Mashallah ❤️",
 	"So proude of your work!🥺",
 	"Nice work! ❤️",
 	"How Awesome 😉",
 	"Amazing!!🎉",
+	"Wow Mashallah ❤️",
 ];
 let qCounter = 0;
 
