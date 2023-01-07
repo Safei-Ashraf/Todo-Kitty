@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", function () {
 		let taskText = document.createElement("p");
 		taskText.textContent = text;
 		let deleteButton = document.createElement("button");
-		deleteButton.textContent = "Delete";
+		deleteButton.textContent = "Done ✔️";
 		deleteButton.classList.add("delete");
 		taskElem.appendChild(taskText);
 		taskElem.appendChild(deleteButton);
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	function deleteTask() {
 		this.parentElement.remove();
 		tasks = tasks.filter((task) => {
-			return task !== this.parentElement.textContent.slice(0, -6);
+			return task !== this.parentElement.textContent.slice(0, -7);
 		});
 		setTimeout(function () {
 			if (tasks.length == 0) {
@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function () {
 	/*Cats' logic */
 	let catsCounter = 0;
 	function revealCat() {
-		cats[shuffledArray[catsCounter]].classList.remove("none");
+		cats[shuffledArray[catsCounter] - 1].classList.remove("none");
 		catsCounter++;
 	}
 
@@ -93,5 +93,4 @@ window.addEventListener("DOMContentLoaded", function () {
 		var r = Math.floor(Math.random() * cats.length) + 1;
 		if (shuffledArray.indexOf(r) === -1) shuffledArray.push(r);
 	}
-	console.log(shuffledArray);
 });
