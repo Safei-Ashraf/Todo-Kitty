@@ -7,6 +7,7 @@ html {
 	min-height: 97vh;
 	padding: 0;
 	margin: 0;
+	overflow-x: hidden;
 }
 main {
 	width: 100%;
@@ -103,10 +104,6 @@ li {
 	padding: 12px;
 	font-family: "Montserrat", sans-serif;
 	border-radius: 12px;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	-ms-border-radius: 12px;
-	-o-border-radius: 12px;
 }
 .delete {
 	color: white;
@@ -144,4 +141,82 @@ li {
 }
 .none {
 	display: none;
+}
+
+/*Toast*/
+#snackbar {
+	visibility: hidden;
+	min-width: 250px; /* Set a default minimum width */
+	margin-left: -125px; /* Divide value of min-width by 2 */
+	background-color: rgba(26, 211, 140, 0.671); /* Black background color */
+	color: #fff; /* White text color */
+	text-align: center; /* Centered text */
+	border-radius: 2px; /* Rounded borders */
+	padding: 16px; /* Padding */
+	position: fixed; /* Sit on top of the screen */
+	z-index: 1; /* Add a z-index if needed */
+	left: 50%; /* Center the snackbar */
+	bottom: 90px;
+}
+#snackbar.show {
+	visibility: visible;
+	/*Showthesnackbar*/ /*Addanimation:;
+	Take0.5secondstofadeinandoutthesnackbar.However,delaythefadeoutprocessfor2.5seconds*/
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 4s;
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 4s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 90px;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 90px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeout {
+	from {
+		bottom: 90px;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		bottom: 90px;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+/*Confetti*/
+#confetti-canvas {
+	position: absolute;
+	top: 5vh;
+	left: 0;
+	right: 0;
+	max-height: 94vh;
 }

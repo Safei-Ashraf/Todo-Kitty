@@ -77,6 +77,7 @@ window.addEventListener("DOMContentLoaded", function () {
 		}, 100);
 		revealCat();
 		startConfetti();
+		callToast();
 		setTimeout(() => {
 			stopConfetti();
 		}, 1000);
