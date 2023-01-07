@@ -18,7 +18,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
 	//Check Local Storage:
 	if (localStorage.getItem("tasks")) {
-		renderTasks(JSON.parse(localStorage.getItem("tasks")));
+		let oldTasks = JSON.parse(localStorage.getItem("tasks"));
+		renderTasks(oldTasks);
+		tasks = tasks.concat(oldTasks);
 	}
 
 	addButton.addEventListener("click", function () {
@@ -55,7 +57,6 @@ window.addEventListener("DOMContentLoaded", function () {
 		for (let i = 0; i < tasks.length; i++) {
 			list.appendChild(createTask(tasks[i]));
 		}
-		console.log(tasks);
 	}
 
 	function saveTasks(tasks) {
