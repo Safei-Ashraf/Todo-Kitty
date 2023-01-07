@@ -76,6 +76,10 @@ window.addEventListener("DOMContentLoaded", function () {
 			}
 		}, 100);
 		revealCat();
+		startConfetti();
+		setTimeout(() => {
+			stopConfetti();
+		}, 1000);
 		saveTasks(tasks);
 	}
 
