@@ -6,6 +6,7 @@ body {
 }
 main {
 	width: 100%;
+	width: 100% !important;
 }
 .form-container {
 	display: flex;
@@ -17,15 +18,19 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 .form-input {
 	height: 44px;
-	width: 400px;
+	width: 90vw;
+	max-width: 960px;
 	padding: 6px;
 	border-radius: 12px;
 	font-size: 16px;
 	outline: transparent;
 	border: 2px solid transparent;
+	margin-top: 1%;
+	margin-right: 4px;
 }
 .form-submit {
 	height: 60px;
@@ -37,6 +42,7 @@ main {
 	color: white;
 	border: 2px solid transparent;
 	cursor: pointer;
+	margin-top: 1%;
 }
 .form-submit:disabled {
 	opacity: 0.5;
@@ -48,7 +54,8 @@ main {
 	align-items: center;
 	justify-content: center;
 	border: 1px dashed rgba(150, 3, 3, 0.4);
-	width: 50%;
+	width: 90vw;
+	max-width: 960px;
 	margin: auto;
 	margin-top: 3rem;
 	border-radius: 12px;
