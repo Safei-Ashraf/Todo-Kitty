@@ -10,6 +10,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
 	const list = document.querySelector(".list-container ul");
 
+	list.innerHTML = `	<p>Items will display here...</p>
+			<div class="placeholder-cat">
+				<img
+					src="./cats/cat-sticker-line-sticker.gif"
+					alt="cat=sticker"
+				/>
+			</div>`;
+
 	//Tasks Array:
 	let tasks = [];
 
@@ -64,17 +72,18 @@ window.addEventListener("DOMContentLoaded", function () {
 		tasks = tasks.filter((task) => {
 			return task !== this.parentElement.textContent.slice(0, -7);
 		});
-		setTimeout(function () {
-			if (tasks.length == 0) {
-				list.innerHTML = `	<p>Items will display here...</p>
+
+		if (tasks.length == 0) {
+			console.log(localStorage.getItem("tasks"));
+			list.innerHTML = `	<p>Items will display here...</p>
 				<div class="placeholder-cat">
 					<img
 						src="./cats/cat-sticker-line-sticker.gif"
 						alt="cat=sticker"
 					/>
 				</div>`;
-			}
-		}, 100);
+		}
+
 		revealCat();
 		startConfetti();
 		callToast();
